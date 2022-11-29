@@ -81,7 +81,7 @@ def list_accounts():
 def read_account(account_id):
     """
     Reads an Account
-    This endpoint will read an Account based on the id 
+    This endpoint will read an Account based on the id
     """
     app.logger.info("Request to read an Account with id: %s", account_id)
     account = Account.find(account_id)
