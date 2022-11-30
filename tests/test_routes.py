@@ -144,7 +144,7 @@ class TestAccountService(TestCase):
         resp = self.client.get(
             f"{BASE_URL}/{account_id}", content_type="application/json"
         )
-        self.assertEqual(resp.status_code, status.HTTP_404_NOT_FOUND)        
+        self.assertEqual(resp.status_code, status.HTTP_404_NOT_FOUND)
 
     # Test 3: test update account
     def test_update_account(self):
@@ -153,7 +153,7 @@ class TestAccountService(TestCase):
         test_account = AccountFactory()
         resp = self.client.post(BASE_URL, json=test_account.serialize())
         self.assertEqual(resp.status_code, status.HTTP_201_CREATED)
-        
+
         # update the account
         new_account = resp.get_json()
         new_account["name"] = "StavrosTest"
@@ -176,14 +176,14 @@ class TestAccountService(TestCase):
         resp = self.client.get(BASE_URL)
         self.assertEqual(resp.status_code, status.HTTP_200_OK)
         data = resp.get_json()
-        self.assertEqual(len(data), 5)   
+        self.assertEqual(len(data), 5)
 
     # Test 6: Error handlers
     def test_method_not_allowed(self):
         """It should not allow an illegal method call"""
         resp = self.client.delete(BASE_URL)
-        self.assertEqual(resp.status_code, status.HTTP_405_METHOD_NOT_ALLOWED)     
-
+        self.assertEqual(resp.status_code, status.HTTP_405_METHOD_NOT_ALLOWED)
+        
     # SECURITY Test 1: HTTPS
     def test_security_headers(self):
         """It should return security headers"""
@@ -205,4 +205,5 @@ class TestAccountService(TestCase):
         response = self.client.get('/', environ_overrides=HTTPS_ENVIRON)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         # Check for the CORS header
-        self.assertEqual(response.headers.get('Access-Control-Allow-Origin'), '*')        
+        self.assertEqual(response.headers.get('Access-Control-Allow-Origin'), '*')
+        
