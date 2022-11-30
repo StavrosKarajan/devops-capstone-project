@@ -153,7 +153,7 @@ class TestAccountService(TestCase):
         test_account = AccountFactory()
         resp = self.client.post(BASE_URL, json=test_account.serialize())
         self.assertEqual(resp.status_code, status.HTTP_201_CREATED)
-       
+
         # update the account
         new_account = resp.get_json()
         new_account["name"] = "StavrosTest"
@@ -176,7 +176,7 @@ class TestAccountService(TestCase):
         resp = self.client.get(BASE_URL)
         self.assertEqual(resp.status_code, status.HTTP_200_OK)
         data = resp.get_json()
-        self.assertEqual(len(data), 5)   
+        self.assertEqual(len(data), 5)
 
     # Test 6: Error handlers
     def test_method_not_allowed(self):
@@ -206,4 +206,5 @@ class TestAccountService(TestCase):
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         # Check for the CORS header
         self.assertEqual(response.headers.get('Access-Control-Allow-Origin'), '*')
-        
+
+        # EOF
